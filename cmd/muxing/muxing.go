@@ -39,17 +39,9 @@ func DataHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ArticlesHandler(w http.ResponseWriter, r *http.Request) {
-	//var r1 map[string]string
 	a, _ := strconv.Atoi(r.Header["A"][0])
 	b, _ := strconv.Atoi(r.Header["B"][0])
-	res := strconv.Itoa(a + b)
-	//r1["a+b"] = res
-	fmt.Println(res)
-	w.WriteHeader(http.StatusOK)
-	w.Header().Get("a+b")
-	w.Header().Set("A+b", res)
-	w.Header()["a+b"] = []string{res}
-	fmt.Fprintf(w, "I got message:\n%v", res)
+	w.Header().Set("a+b", strconv.Itoa(a+b))
 }
 
 // Start /** Starts the web server listener on given host and port.
