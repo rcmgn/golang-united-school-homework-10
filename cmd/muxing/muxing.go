@@ -27,7 +27,7 @@ func BadHandler(w http.ResponseWriter, r *http.Request) {
 
 func ParamHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	//w.WriteHeader(http.StatusInternalServerError)
+	w.WriteHeader(http.StatusOK)
 	fmt.Fprintf(w, "Hello, %v!", vars["PARAM"])
 }
 
@@ -36,7 +36,7 @@ func Start(host string, port int) {
 	router := mux.NewRouter()
 	router.HandleFunc("/", HomeHandler)
 	router.HandleFunc("/bad", BadHandler).Methods("GET")
-	router.HandleFunc("/name{PARAM}", ParamHandler).Methods("GET")
+	router.HandleFunc("/name/{PARAM}", ParamHandler).Methods("GET")
 	//router.HandleFunc("/data{PARAM}", DataHandler).Methods("POST")
 	//router.HandleFunc("/articles", ArticlesHandler)
 
